@@ -1,0 +1,37 @@
+import random
+
+operators = ['+', '-', '*']
+Min_Operand = 1
+Max_Operand = 12
+Solved = 0
+
+def generate_problem():
+    left = random.randint(Min_Operand, Max_Operand)
+    right = random.randint(Min_Operand, Max_Operand)
+    operator = random.choice(operators)
+
+    expr = str(left) + ' ' + operator + ' ' + str(right)
+    answer = eval(expr)
+    return expr, answer
+
+while True:
+    choice = input('Would you like to do another problem? (y/n) ').lower()
+    
+    if choice == 'n':
+        print(f'Final score = {Solved}')
+        break
+
+    elif choice == 'y':
+        expr, answer = generate_problem()
+        print(expr)
+        player_answer = input('Write your answer in numerical form: ')
+        if player_answer == str(answer):
+            Solved += 1
+            print('Correct')
+            print(f'Score = {Solved}')
+        else:
+            print('Incorrect answer')
+    
+    else:
+        print('Invalid input')
+        continue
